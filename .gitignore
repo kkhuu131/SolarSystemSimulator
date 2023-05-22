@@ -1,0 +1,10 @@
+# Ignore Unity generated files
+/Temp/
+/Library/
+/Build/
+/obj/
+/*.csproj
+/*.unityproj
+/*.sln
+/*.userprefs
+/*.DS_Store
