@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PhysicsSimulation : MonoBehaviour
 {
-    public float G = 100f;
+    public float G = 1f;
     GameObject[] astroObjects;
 
     // Start is called before the first frame update
