@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class CameraZoom : MonoBehaviour
 {
-    public float zoomSpeed = 5f;
+    public float zoomSpeed = 10f;
 
     void Update()
     {
@@ -14,7 +14,7 @@ public class CameraZoom : MonoBehaviour
             Camera.main.fieldOfView += (scrollWheelInput * zoomSpeed)*-1;
 
             // Limit the camera's FOV within a desired range
-            Camera.main.fieldOfView = Mathf.Clamp(Camera.main.fieldOfView, 5f, 60f);
+            Camera.main.fieldOfView = Mathf.Clamp(Camera.main.fieldOfView, 2.5f, 60f);
         }
     }
 }
