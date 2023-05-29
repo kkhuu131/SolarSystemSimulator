@@ -19,7 +19,8 @@ public class CameraZoom : MonoBehaviour
     private Vector2 rotation = new Vector2(90f, 90f);
     private bool isLooking = false;
 
-    private KeyCode[] numKeys = { KeyCode.Alpha1, KeyCode.Alpha2, KeyCode.Alpha3, KeyCode.Alpha4, KeyCode.Alpha5, KeyCode.Alpha6, KeyCode.Alpha7, KeyCode.Alpha8, KeyCode.Alpha9 };
+    private KeyCode[] numKeys = { KeyCode.Alpha1, KeyCode.Alpha2, KeyCode.Alpha3, KeyCode.Alpha4, KeyCode.Alpha5, KeyCode.Alpha6, KeyCode.Alpha7, KeyCode.Alpha8, KeyCode.Alpha9,
+                                  KeyCode.Keypad1, KeyCode.Keypad2, KeyCode.Keypad3, KeyCode.Keypad4, KeyCode.Keypad5, KeyCode.Keypad6, KeyCode.Keypad7, KeyCode.Keypad8, KeyCode.Keypad9};
     private string[] planets = { "Sun", "Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune" };
     private int index = -1;
 
@@ -31,9 +32,9 @@ public class CameraZoom : MonoBehaviour
 
     private void Hotkeys()
     {
-        for (int i = 0; i < numKeys.Length; i++)
+        for (int i = 0; i < (numKeys.Length / 2); i++)
         {
-            if (Input.GetKeyDown(numKeys[i]))
+            if (Input.GetKeyDown(numKeys[i]) || Input.GetKeyDown(numKeys[i+9]))
             {
                 index = (index != i) ? i : -1;
                 break;
