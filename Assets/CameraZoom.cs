@@ -16,7 +16,7 @@ public class CameraZoom : MonoBehaviour
     public float sensitivity = 1f;
     public float scrollSpeed = 50f;
 
-    private Vector2 rotation = Vector2.zero;
+    private Vector2 rotation = new Vector2(90f, 90f);
     private bool isLooking = false;
 
     private void Start()
