@@ -18,18 +18,23 @@ public class PhysicsSimulation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Flatten();
+
     }
 
     private void FixedUpdate()
     {
         Gravity();
+        Flatten();
     }
 
-    void Gravity() {
-        foreach (GameObject a in astroObjects) {
-            foreach (GameObject b in astroObjects) {
-                if (!a.Equals(b)) {
+    void Gravity()
+    {
+        foreach (GameObject a in astroObjects)
+        {
+            foreach (GameObject b in astroObjects)
+            {
+                if (!a.Equals(b))
+                {
                     // Apply Newton's law of universal gravitation
                     // F = G * (m1 * m2) / r^2
 
@@ -47,19 +52,14 @@ public class PhysicsSimulation : MonoBehaviour
         }
     }
 
-    void Flatten()
+    void InitialVelocity()
     {
         foreach (GameObject a in astroObjects)
         {
-            a.transform.position = new Vector3(a.transform.position.x, 0, a.transform.position.z);
-        }
-    }
-
-    void InitialVelocity() {
-        foreach (GameObject a in astroObjects) {
             foreach (GameObject b in astroObjects)
             {
-                if (!a.Equals(b)) {
+                if (!a.Equals(b))
+                {
                     float m2 = b.GetComponent<Rigidbody>().mass;
                     float r = Vector3.Distance(a.transform.position, b.transform.position);
                     a.transform.LookAt(b.transform);
@@ -67,6 +67,14 @@ public class PhysicsSimulation : MonoBehaviour
                     a.GetComponent<Rigidbody>().velocity += a.transform.right * Mathf.Sqrt((G * m2) / r);
                 }
             }
+        }
+    }
+
+    void Flatten()
+    {
+        foreach (GameObject a in astroObjects)
+        {
+            a.transform.position = new Vector3(a.transform.position.x, 0, a.transform.position.z);
         }
     }
 }
