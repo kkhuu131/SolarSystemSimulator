@@ -19,9 +19,30 @@ public class CameraZoom : MonoBehaviour
     private Vector2 rotation = new Vector2(90f, 90f);
     private bool isLooking = false;
 
+    private KeyCode[] numKeys = { KeyCode.Alpha1, KeyCode.Alpha2, KeyCode.Alpha3, KeyCode.Alpha4, KeyCode.Alpha5, KeyCode.Alpha6, KeyCode.Alpha7, KeyCode.Alpha8, KeyCode.Alpha9 };
+    private string[] planets = { "Sun", "Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune" };
+    private int index = -1;
+
+
     private void Start()
     {
         setPanSpeed();
+    }
+
+    private void Hotkeys()
+    {
+        for (int i = 0; i < numKeys.Length; i++)
+        {
+            if (Input.GetKeyDown(numKeys[i]))
+            {
+                index = (index != i) ? i : -1;
+                break;
+            }
+
+        }
+        if (index == -1) return;
+        Vector3 planetPos = GameObject.Find(planets[index]).transform.position;
+        Camera.main.transform.LookAt(planetPos);
     }
 
     private void Update()
@@ -80,6 +101,8 @@ public class CameraZoom : MonoBehaviour
             //Increase pan speed when zoomed out
             setPanSpeed();
         }
+
+        Hotkeys();
     }
 
     public void setPanSpeed()
