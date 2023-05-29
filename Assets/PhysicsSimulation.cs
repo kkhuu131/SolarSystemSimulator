@@ -18,7 +18,7 @@ public class PhysicsSimulation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        Flatten();
     }
 
     private void FixedUpdate()
@@ -44,6 +44,14 @@ public class PhysicsSimulation : MonoBehaviour
                     a.GetComponent<Rigidbody>().AddForce(F_direction * F_magnitude);
                 }
             }
+        }
+    }
+
+    void Flatten()
+    {
+        foreach (GameObject a in astroObjects)
+        {
+            a.transform.position = new Vector3(a.transform.position.x, 0, a.transform.position.z);
         }
     }
 

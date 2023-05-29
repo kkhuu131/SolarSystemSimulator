@@ -9,10 +9,8 @@ public class CameraZoom : MonoBehaviour {
 
     // Since pan speed is dynamic based on zoom, changing this value will change pan speed.
     public float maxPanSpeed = 600f;
-    Vector3 cameraPosition = Vector3.zero;
 
     private void Start() {
-        cameraPosition = Camera.main.transform.position;
         setPanSpeed();
     }
 
@@ -33,9 +31,7 @@ public class CameraZoom : MonoBehaviour {
         // Pans the camera w/ arrow keys or WASD
         if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.DownArrow) ||
             Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D)) {
-
-            cameraPosition += new Vector3(Input.GetAxis("Vertical"), 0f, -Input.GetAxis("Horizontal")) * panSpeed * Time.deltaTime;
-            Camera.main.transform.position = cameraPosition;
+            Camera.main.transform.position += new Vector3(Input.GetAxis("Vertical"), 0f, -Input.GetAxis("Horizontal")) * panSpeed * Time.deltaTime;
         }
     }
 
