@@ -4,7 +4,7 @@ public class CameraZoom : MonoBehaviour
 {
     public float zoomSpeed = 10f;
     public float zoomMin = 2.5f;
-    public float zoomMax = 60f;
+    public float zoomMax = 200f;
 
     public float panSpeed = 10f;
 
@@ -79,7 +79,16 @@ public class CameraZoom : MonoBehaviour
             // Apply panning based on input
             float horizontal = Input.GetAxis("Horizontal");
             float vertical = Input.GetAxis("Vertical");
-            Vector3 pan = (panDirection * horizontal + transform.up * vertical) * panSpeed * (Time.deltaTime / Time.timeScale);
+
+            float deltaTime;
+            if (Time.timeScale == 0)
+            {
+                deltaTime = Time.deltaTime;
+            }
+            else {
+                deltaTime = (Time.deltaTime / Time.timeScale);
+            }
+            Vector3 pan = (panDirection * horizontal + transform.up * vertical) * panSpeed * deltaTime;
             transform.position += pan;
 
             // Apply forward/backward movement based on scroll wheel input 
