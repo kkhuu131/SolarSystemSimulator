@@ -9,11 +9,11 @@ C:\Program Files\Unity\Hub\Editor\2021.3.22f1\Editor\Unity.exe
 -batchMode
 -noUpm
 -name
-AssetImportWorker0
+AssetImportWorker3
 -projectPath
 C:/Users/Timot/Downloads/solar/SolarSystemSimulator
 -logFile
-Logs/AssetImportWorker0.log
+Logs/AssetImportWorker3.log
 -srvPort
 57801
 Successfully changed project path to: C:/Users/Timot/Downloads/solar/SolarSystemSimulator
@@ -47,11 +47,11 @@ C:/Users/Timot/Downloads/solar/SolarSystemSimulator
     "memorysetup-temp-allocator-size-cloud-worker=32768"
     "memorysetup-temp-allocator-size-gi-baking-worker=262144"
     "memorysetup-temp-allocator-size-gfx=262144"
-Player connection [28268] Host "[IP] 192.168.0.89 [Port] 0 [Flags] 2 [Guid] 1015103950 [EditorId] 1015103950 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-9GAJME7) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
+Player connection [29188] Host "[IP] 192.168.0.89 [Port] 0 [Flags] 2 [Guid] 68447838 [EditorId] 68447838 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-9GAJME7) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
 
-Player connection [28268] Host "[IP] 192.168.0.89 [Port] 0 [Flags] 2 [Guid] 1015103950 [EditorId] 1015103950 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-9GAJME7) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
+Player connection [29188] Host "[IP] 192.168.0.89 [Port] 0 [Flags] 2 [Guid] 68447838 [EditorId] 68447838 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-9GAJME7) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
 
-Refreshing native plugins compatible for Editor in 127.29 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 130.02 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2021.3.22f1 (b6c551784ba3)
 [Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2021.3.22f1/Editor/Data/Resources/UnitySubsystems
@@ -67,80 +67,80 @@ Initialize mono
 Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2021.3.22f1/Editor/Data/Managed'
 Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2021.3.22f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
 Mono config path = 'C:/Program Files/Unity/Hub/Editor/2021.3.22f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56832
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56584
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: C:/Program Files/Unity/Hub/Editor/2021.3.22f1/Editor/Data/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll
 Register platform support module: C:/Program Files/Unity/Hub/Editor/2021.3.22f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
-Registered in 0.009850 seconds.
+Registered in 0.007454 seconds.
 Native extension for WindowsStandalone target not found
 Native extension for Android target not found
-Android Extension - Scanning For ADB Devices 415 ms
-Refreshing native plugins compatible for Editor in 126.71 ms, found 3 plugins.
+Android Extension - Scanning For ADB Devices 400 ms
+Refreshing native plugins compatible for Editor in 127.70 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  1.287 seconds
+- Completed reload, in  1.288 seconds
 Domain Reload Profiling:
-	ReloadAssembly (1287ms)
-		BeginReloadAssembly (126ms)
+	ReloadAssembly (1288ms)
+		BeginReloadAssembly (127ms)
 			ExecutionOrderSort (0ms)
 			DisableScriptedObjects (0ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
-			CreateAndSetChildDomain (1ms)
-		EndReloadAssembly (1027ms)
-			LoadAssemblies (123ms)
+			CreateAndSetChildDomain (2ms)
+		EndReloadAssembly (1026ms)
+			LoadAssemblies (121ms)
 			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (133ms)
+			SetupTypeCache (136ms)
 			ReleaseScriptCaches (0ms)
-			RebuildScriptCaches (38ms)
-			SetupLoadedEditorAssemblies (791ms)
+			RebuildScriptCaches (37ms)
+			SetupLoadedEditorAssemblies (782ms)
 				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (508ms)
+				InitializePlatformSupportModulesInManaged (491ms)
 				SetLoadedEditorAssemblies (0ms)
-				RefreshPlugins (127ms)
-				BeforeProcessingInitializeOnLoad (1ms)
-				ProcessInitializeOnLoadAttributes (104ms)
-				ProcessInitializeOnLoadMethodAttributes (51ms)
+				RefreshPlugins (128ms)
+				BeforeProcessingInitializeOnLoad (2ms)
+				ProcessInitializeOnLoadAttributes (108ms)
+				ProcessInitializeOnLoadMethodAttributes (54ms)
 				AfterProcessingInitializeOnLoad (0ms)
 				EditorAssembliesLoaded (0ms)
 			ExecutionOrderSort2 (0ms)
 			AwakeInstancesAfterBackupRestoration (0ms)
 Platform modules already initialized, skipping
 Registering precompiled user dll's ...
-Registered in 0.008003 seconds.
+Registered in 0.009512 seconds.
 Begin MonoManager ReloadAssembly
 Symbol file LoadedFromMemory doesn't match image C:\Users\Timot\Downloads\solar\SolarSystemSimulator\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
 Symbol file LoadedFromMemory doesn't match image C:\Users\Timot\Downloads\solar\SolarSystemSimulator\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
 Native extension for WindowsStandalone target not found
 Native extension for Android target not found
-Refreshing native plugins compatible for Editor in 117.49 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 124.13 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  1.489 seconds
+- Completed reload, in  1.529 seconds
 Domain Reload Profiling:
-	ReloadAssembly (1490ms)
-		BeginReloadAssembly (131ms)
+	ReloadAssembly (1530ms)
+		BeginReloadAssembly (134ms)
 			ExecutionOrderSort (0ms)
 			DisableScriptedObjects (7ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
-			CreateAndSetChildDomain (22ms)
-		EndReloadAssembly (1231ms)
-			LoadAssemblies (109ms)
+			CreateAndSetChildDomain (25ms)
+		EndReloadAssembly (1257ms)
+			LoadAssemblies (111ms)
 			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (315ms)
+			SetupTypeCache (337ms)
 			ReleaseScriptCaches (1ms)
-			RebuildScriptCaches (77ms)
-			SetupLoadedEditorAssemblies (662ms)
+			RebuildScriptCaches (75ms)
+			SetupLoadedEditorAssemblies (677ms)
 				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (20ms)
+				InitializePlatformSupportModulesInManaged (18ms)
 				SetLoadedEditorAssemblies (0ms)
-				RefreshPlugins (118ms)
-				BeforeProcessingInitializeOnLoad (188ms)
-				ProcessInitializeOnLoadAttributes (251ms)
-				ProcessInitializeOnLoadMethodAttributes (79ms)
-				AfterProcessingInitializeOnLoad (6ms)
+				RefreshPlugins (124ms)
+				BeforeProcessingInitializeOnLoad (181ms)
+				ProcessInitializeOnLoadAttributes (259ms)
+				ProcessInitializeOnLoadMethodAttributes (85ms)
+				AfterProcessingInitializeOnLoad (9ms)
 				EditorAssembliesLoaded (0ms)
 			ExecutionOrderSort2 (0ms)
 			AwakeInstancesAfterBackupRestoration (5ms)
@@ -148,12 +148,12 @@ Platform modules already initialized, skipping
 ========================================================================
 Worker process is ready to serve import requests
 Launched and connected shader compiler UnityShaderCompiler.exe after 0.05 seconds
-Refreshing native plugins compatible for Editor in 1.51 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 1.81 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Unloading 5117 Unused Serialized files (Serialized files now loaded: 0)
 Unloading 32 unused Assets / (0.8 MB). Loaded Objects now: 5579.
 Memory consumption went from 208.4 MB to 207.6 MB.
-Total: 5.621000 ms (FindLiveObjects: 0.775200 ms CreateObjectMapping: 0.200600 ms MarkObjects: 4.004100 ms  DeleteObjects: 0.639300 ms)
+Total: 4.827200 ms (FindLiveObjects: 0.491900 ms CreateObjectMapping: 0.140600 ms MarkObjects: 3.672300 ms  DeleteObjects: 0.520600 ms)
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
@@ -167,28 +167,52 @@ AssetImportParameters requested are different than current active one (requested
   custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
 ========================================================================
 Received Import Request.
-  Time since last request: 166078.452036 seconds.
-  path: Packages/com.unity.render-pipelines.universal/Runtime/Materials/SpatialMappingOcclusion.mat
-  artifactKey: Guid(b51db210fe78df745a372851b3db949e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Packages/com.unity.render-pipelines.universal/Runtime/Materials/SpatialMappingOcclusion.mat using Guid(b51db210fe78df745a372851b3db949e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '441d2e7780d469031c386c66532738f9') in 0.304723 seconds 
+  Time since last request: 166078.487999 seconds.
+  path: Packages/com.unity.render-pipelines.universal/Runtime/Materials/TerrainLit.mat
+  artifactKey: Guid(594ea882c5a793440b60ff72d896021e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Packages/com.unity.render-pipelines.universal/Runtime/Materials/TerrainLit.mat using Guid(594ea882c5a793440b60ff72d896021e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'feb5e8629259084c6f0cd64c92168fb4') in 1.283596 seconds 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000041 seconds.
-  path: Packages/com.unity.render-pipelines.universal/Runtime/Materials/Decal.mat
-  artifactKey: Guid(31d0dcc6f2dd4e4408d18036a2c93862) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Packages/com.unity.render-pipelines.universal/Runtime/Materials/Decal.mat using Guid(31d0dcc6f2dd4e4408d18036a2c93862) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6f3591ee321d7ad1839639acc42b52b0') in 0.024723 seconds 
+  Time since last request: 649.959901 seconds.
+  path: Assets/Materials/Materials/2k_jupiter.mat
+  artifactKey: Guid(dc6142dbe972b504c9a9d71c978802d4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Materials/Materials/2k_jupiter.mat using Guid(dc6142dbe972b504c9a9d71c978802d4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '18b3e2e02d47f6e2e82f2fce7819cf38') in 0.026875 seconds 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000039 seconds.
-  path: Packages/com.unity.render-pipelines.universal/Runtime/Materials/SpatialMappingWireframe.mat
-  artifactKey: Guid(9875a245ac49007498213638a307faa1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Packages/com.unity.render-pipelines.universal/Runtime/Materials/SpatialMappingWireframe.mat using Guid(9875a245ac49007498213638a307faa1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4e750b55f305c5882db04f482898d838') in 0.017566 seconds 
+  Time since last request: 0.000031 seconds.
+  path: Assets/Materials/Materials/2k_mars 1.mat
+  artifactKey: Guid(efec658baa967b74285f2017ad5c038e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Materials/Materials/2k_mars 1.mat using Guid(efec658baa967b74285f2017ad5c038e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '860a0131332150a894f110ee59e95741') in 0.020985 seconds 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000024 seconds.
-  path: Packages/com.unity.render-pipelines.universal/Runtime/Materials/Lit.mat
-  artifactKey: Guid(31321ba15b8f8eb4c954353edc038b1d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Packages/com.unity.render-pipelines.universal/Runtime/Materials/Lit.mat using Guid(31321ba15b8f8eb4c954353edc038b1d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '035459fe427557dd3479b93d3f6c9eb0') in 0.025284 seconds 
+  Time since last request: 0.000030 seconds.
+  path: Assets/Materials/Materials/2k_uranus.mat
+  artifactKey: Guid(cdc1577bc67eb314d82c95ac8f1bea58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Materials/Materials/2k_uranus.mat using Guid(cdc1577bc67eb314d82c95ac8f1bea58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'eeb1aafc55c36712b05d237da3aa3993') in 0.016221 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000035 seconds.
+  path: Assets/Materials/Materials/2k_saturn_ring_alpha.mat
+  artifactKey: Guid(765b09726513bdf44aea656c83ae735b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Materials/Materials/2k_saturn_ring_alpha.mat using Guid(765b09726513bdf44aea656c83ae735b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fe0300fe516a8b9ccfa3cf7f2bd95ccc') in 0.020934 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000034 seconds.
+  path: Assets/Materials/Materials/2k_sun.mat
+  artifactKey: Guid(346363e7c5445a048aaf0dc97213e657) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Materials/Materials/2k_sun.mat using Guid(346363e7c5445a048aaf0dc97213e657) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1a4799b5f2b7b510a8ffebb90b12ee76') in 0.017188 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000031 seconds.
+  path: Assets/Materials/Materials/2k_neptune.mat
+  artifactKey: Guid(9331daab1fdc57b41a196fc7d9a32bc4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Materials/Materials/2k_neptune.mat using Guid(9331daab1fdc57b41a196fc7d9a32bc4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '219a3c33f6ef350a754bd12838221e35') in 0.017090 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000031 seconds.
+  path: Assets/Materials/Materials/2k_saturn 1.mat
+  artifactKey: Guid(1bca8286862b3f946b061915c3b33516) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Materials/Materials/2k_saturn 1.mat using Guid(1bca8286862b3f946b061915c3b33516) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c0523ee5dc0bc5187b5b9e5241daf359') in 0.023060 seconds 
 Editor requested this worker to shutdown with reason: Scaling down because of idle timeout
 AssetImportWorker is now disconnected from the server
 Process exiting
