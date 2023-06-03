@@ -25,13 +25,12 @@ public class CameraZoom : MonoBehaviour
     private KeyCode[] numKeys = { KeyCode.Alpha1, KeyCode.Alpha2, KeyCode.Alpha3, KeyCode.Alpha4, KeyCode.Alpha5, KeyCode.Alpha6, KeyCode.Alpha7, KeyCode.Alpha8, KeyCode.Alpha9,
                                   KeyCode.Keypad1, KeyCode.Keypad2, KeyCode.Keypad3, KeyCode.Keypad4, KeyCode.Keypad5, KeyCode.Keypad6, KeyCode.Keypad7, KeyCode.Keypad8, KeyCode.Keypad9};
     private string[] planets = { "Sun", "Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune" };
-    private int index = -1;
+    private int focused = -1;
 
 
     private void Start()
     {
         setPanSpeed();
-        isLooking = false;
     }
 
     private void Hotkeys()
@@ -40,14 +39,16 @@ public class CameraZoom : MonoBehaviour
         {
             if (Input.GetKeyDown(numKeys[i]) || Input.GetKeyDown(numKeys[i+9]))
             {
-                index = (index != i) ? i : -1;
+                focused = (focused != i) ? i : -1;
                 break;
             }
 
         }
-        if (index == -1) return;
-        Vector3 planetPos = GameObject.Find(planets[index]).transform.position;
+        if (focused == -1) return;
+        Vector3 planetPos = GameObject.Find(planets[focused]).transform.position;
         Camera.main.transform.LookAt(planetPos);
+        rotation.y = Camera.main.transform.eulerAngles.x;
+        rotation.x = Camera.main.transform.eulerAngles.y;
     }
 
     private void Update()
@@ -62,14 +63,14 @@ public class CameraZoom : MonoBehaviour
         if (isLooking) {
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
-
-            if (index == -1)
+            if (focused == -1)
             {
                 rotation.x += Input.GetAxis("Mouse X") * sensitivity;
                 rotation.y -= Input.GetAxis("Mouse Y") * sensitivity;
                 rotation.y = Mathf.Clamp(rotation.y, -90f, 90f);
                 transform.eulerAngles = new Vector3(rotation.y, rotation.x, 0f);
             }
+        
         } else {
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
