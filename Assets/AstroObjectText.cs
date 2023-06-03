@@ -15,10 +15,9 @@ public class AstroObjectText : MonoBehaviour
     {
         // Get position of object and convert to position of object in camera POV
         Vector3 objectPosition = objectToTrack.position;
-
         Vector3 screenPosition = mainCamera.WorldToScreenPoint(objectPosition);
+        textUI.enabled = screenPosition.z >= 0;
         screenPosition.z = 0;
-
         screenPosition.y += offset;
 
         // Set position of text
