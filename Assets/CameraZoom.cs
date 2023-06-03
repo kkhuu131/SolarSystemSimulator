@@ -1,9 +1,10 @@
+using System.Net;
+using Unity.VisualScripting;
 using UnityEngine;
 using static UnityEditor.Searcher.SearcherWindow.Alignment;
 
 public class CameraZoom : MonoBehaviour
 {
-    public float zoomSpeed = 10f;
     public float zoomMin = 2.5f;
     public float zoomMax = 200f;
 
@@ -15,7 +16,8 @@ public class CameraZoom : MonoBehaviour
     // Look in all directions, pan (wasd), and move forward/backward (scroll wheel) with right click
     public Transform centerOfReference;
     public float sensitivity = 1f;
-    public float scrollSpeed = 50f;
+    public float scrollSpeed = 100f;
+    public float cameraAcceleration = 1;
 
     private Vector2 rotation = new Vector2(90f, 90f);
     private bool isLooking = true;
@@ -60,15 +62,14 @@ public class CameraZoom : MonoBehaviour
         if (isLooking) {
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
-            
-            float mouseX = Input.GetAxis("Mouse X") * sensitivity;
-            float mouseY = Input.GetAxis("Mouse Y") * sensitivity;
 
-            rotation.x += mouseX;
-            rotation.y -= mouseY;
-            rotation.y = Mathf.Clamp(rotation.y, -90f, 90f);
-
-            transform.eulerAngles = new Vector3(rotation.y, rotation.x, 0f);
+            if (index == -1)
+            {
+                rotation.x += Input.GetAxis("Mouse X") * sensitivity;
+                rotation.y -= Input.GetAxis("Mouse Y") * sensitivity;
+                rotation.y = Mathf.Clamp(rotation.y, -90f, 90f);
+                transform.eulerAngles = new Vector3(rotation.y, rotation.x, 0f);
+            }
         } else {
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
@@ -84,19 +85,23 @@ public class CameraZoom : MonoBehaviour
         // Camera movement
 
         // XZ plane movement
+        cameraAcceleration *= (Input.GetAxis("Horizontal") > 0 || Input.GetAxis("Vertical") > 0) ? 1.001f : (1f / cameraAcceleration);
         Vector3 movementXZ =
             // Left and right (A, D) keys
-            Quaternion.Euler(0f, rotation.x, 0f) * Vector3.right * Input.GetAxis("Horizontal")
+            (Camera.main.transform.right * Input.GetAxis("Horizontal")
             // Up and down (W, S) keys
-            + transform.up * Input.GetAxis("Vertical");
+            + Camera.main.transform.forward * Input.GetAxis("Vertical"))
+            // Acceleration
+            * cameraAcceleration;
+
         movementXZ.y = 0f;
 
         // Y axis movement
         float ascendRate = 0f;
         if (Input.GetKey(KeyCode.Space)) {
-            ascendRate = 1f; // Fly up
+            ascendRate = 0.4f; // Fly up
         } else if (Input.GetKey(KeyCode.LeftControl)) {
-            ascendRate = -1f; // Fly down
+            ascendRate = -0.4f; // Fly down
         }
 
         Vector3 movementY = Vector3.up * ascendRate;
@@ -104,10 +109,10 @@ public class CameraZoom : MonoBehaviour
 
         float scrollWheelInput = Input.GetAxis("Mouse ScrollWheel");
 
-        if (Mathf.Abs(scrollWheelInput) > 0)
+        if (Mathf.Abs(Input.GetAxis("Mouse ScrollWheel")) > 0)
         {
             // Adjust the camera's field of view (FOV) based on scroll wheel input
-            Camera.main.fieldOfView -= scrollWheelInput * zoomSpeed;
+            Camera.main.fieldOfView -= scrollWheelInput * 50;
 
             // Limit the camera's FOV within a desired range
             Camera.main.fieldOfView = Mathf.Clamp(Camera.main.fieldOfView, zoomMin, zoomMax);
