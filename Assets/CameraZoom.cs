@@ -1,4 +1,5 @@
 using UnityEngine;
+using static UnityEditor.Searcher.SearcherWindow.Alignment;
 
 public class CameraZoom : MonoBehaviour
 {
@@ -17,7 +18,7 @@ public class CameraZoom : MonoBehaviour
     public float scrollSpeed = 50f;
 
     private Vector2 rotation = new Vector2(90f, 90f);
-    private bool isLooking = false;
+    private bool isLooking = true;
 
     private KeyCode[] numKeys = { KeyCode.Alpha1, KeyCode.Alpha2, KeyCode.Alpha3, KeyCode.Alpha4, KeyCode.Alpha5, KeyCode.Alpha6, KeyCode.Alpha7, KeyCode.Alpha8, KeyCode.Alpha9,
                                   KeyCode.Keypad1, KeyCode.Keypad2, KeyCode.Keypad3, KeyCode.Keypad4, KeyCode.Keypad5, KeyCode.Keypad6, KeyCode.Keypad7, KeyCode.Keypad8, KeyCode.Keypad9};
@@ -28,6 +29,7 @@ public class CameraZoom : MonoBehaviour
     private void Start()
     {
         setPanSpeed();
+        isLooking = false;
     }
 
     private void Hotkeys()
@@ -48,22 +50,17 @@ public class CameraZoom : MonoBehaviour
 
     private void Update()
     {
+        // Toggles mouse look around
         if (Input.GetMouseButtonDown(1))
         {
-            isLooking = true;
+            isLooking = !isLooking;
+        }
+
+        // Mouse look around
+        if (isLooking) {
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
-        }
-
-        if (Input.GetMouseButtonUp(1))
-        {
-            isLooking = false;
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-        }
-
-        if (isLooking)
-        {
+            
             float mouseX = Input.GetAxis("Mouse X") * sensitivity;
             float mouseY = Input.GetAxis("Mouse Y") * sensitivity;
 
@@ -72,31 +69,38 @@ public class CameraZoom : MonoBehaviour
             rotation.y = Mathf.Clamp(rotation.y, -90f, 90f);
 
             transform.eulerAngles = new Vector3(rotation.y, rotation.x, 0f);
-
-            // Calculate the panning direction based on the camera's forward vector
-            Vector3 panDirection = Quaternion.Euler(0f, rotation.x, 0f) * Vector3.right;
-
-            // Apply panning based on input
-            float horizontal = Input.GetAxis("Horizontal");
-            float vertical = Input.GetAxis("Vertical");
-
-            float deltaTime;
-            if (Time.timeScale == 0)
-            {
-                deltaTime = Time.deltaTime;
-            }
-            else {
-                deltaTime = (Time.deltaTime / Time.timeScale);
-            }
-            Vector3 pan = (panDirection * horizontal + transform.up * vertical) * panSpeed * deltaTime;
-            transform.position += pan;
-
-            // Apply forward/backward movement based on scroll wheel input 
-            // TODO
-            /*          float scroll = Input.GetAxis("Mouse ScrollWheel");
-                        Vector3 moveDirection = transform.forward * scroll * scrollSpeed * Time.deltaTime;
-                        transform.position += moveDirection;*/
+        } else {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
         }
+
+        float deltaTime;
+        if (Time.timeScale == 0) {
+            deltaTime = Time.deltaTime;
+        } else {
+            deltaTime = (Time.deltaTime / Time.timeScale);
+        }
+
+        // Camera movement
+
+        // XZ plane movement
+        Vector3 movementXZ =
+            // Left and right (A, D) keys
+            Quaternion.Euler(0f, rotation.x, 0f) * Vector3.right * Input.GetAxis("Horizontal")
+            // Up and down (W, S) keys
+            + transform.up * Input.GetAxis("Vertical");
+        movementXZ.y = 0f;
+
+        // Y axis movement
+        float ascendRate = 0f;
+        if (Input.GetKey(KeyCode.Space)) {
+            ascendRate = 1f; // Fly up
+        } else if (Input.GetKey(KeyCode.LeftControl)) {
+            ascendRate = -1f; // Fly down
+        }
+
+        Vector3 movementY = Vector3.up * ascendRate;
+        transform.position += (movementXZ + movementY) * panSpeed * deltaTime;
 
         float scrollWheelInput = Input.GetAxis("Mouse ScrollWheel");
 
