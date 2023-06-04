@@ -1,6 +1,8 @@
 using System.Net;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 using static UnityEditor.Searcher.SearcherWindow.Alignment;
 
 public class CameraZoom : MonoBehaviour
@@ -26,15 +28,27 @@ public class CameraZoom : MonoBehaviour
                                   KeyCode.Keypad1, KeyCode.Keypad2, KeyCode.Keypad3, KeyCode.Keypad4, KeyCode.Keypad5, KeyCode.Keypad6, KeyCode.Keypad7, KeyCode.Keypad8, KeyCode.Keypad9};
     private string[] planets = { "Sun", "Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune" };
     private int focused = -1;
+    private bool isLocked = false;
+    private GameObject isLockedText;
+    private TextMeshProUGUI focusedText;
 
 
     private void Start()
     {
         setPanSpeed();
+        isLockedText = GameObject.Find("isLockedText");
+        focusedText = GameObject.Find("FocusedText").GetComponent<TextMeshProUGUI>();
+        isLockedText.SetActive(false);
     }
 
     private void Hotkeys()
     {
+        if (Input.GetKeyDown(KeyCode.F) && focused != -1)
+        {
+            isLocked = !isLocked;
+            isLockedText.SetActive(isLocked);
+        }
+
         for (int i = 0; i < (numKeys.Length / 2); i++)
         {
             if (Input.GetKeyDown(numKeys[i]) || Input.GetKeyDown(numKeys[i+9]))
@@ -44,11 +58,25 @@ public class CameraZoom : MonoBehaviour
             }
 
         }
-        if (focused == -1) return;
-        Vector3 planetPos = GameObject.Find(planets[focused]).transform.position;
-        Camera.main.transform.LookAt(planetPos);
-        rotation.y = Camera.main.transform.eulerAngles.x;
-        rotation.x = Camera.main.transform.eulerAngles.y;
+
+        if (focused == -1)
+        {
+            isLocked = false;
+            isLockedText.SetActive(false);
+            focusedText.SetText("");
+            Camera.main.transform.SetParent(GameObject.Find(planets[0]).transform);
+        } 
+        else
+        {
+            if (isLocked) Camera.main.transform.SetParent(GameObject.Find(planets[focused]).transform);
+            else Camera.main.transform.SetParent(GameObject.Find(planets[0]).transform);
+
+            Vector3 planetPos = GameObject.Find(planets[focused]).transform.position;
+            Camera.main.transform.LookAt(planetPos);
+            rotation.y = Camera.main.transform.eulerAngles.x;
+            rotation.x = Camera.main.transform.eulerAngles.y;
+            focusedText.SetText("Focused on : " + planets[focused]);
+        }
     }
 
     private void Update()
