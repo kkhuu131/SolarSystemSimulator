@@ -52,7 +52,7 @@ public class PhysicsSimulation : MonoBehaviour
         }
     }
 
-    void InitialVelocity()
+    public void InitialVelocity()
     {
         foreach (GameObject a in astroObjects)
         {

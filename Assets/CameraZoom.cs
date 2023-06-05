@@ -29,7 +29,7 @@ public class CameraZoom : MonoBehaviour
     private string[] planets = { "Sun", "Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune" };
     private int focused = -1;
     private bool isLocked = false;
-    private GameObject isLockedText;
+    private GameObject isLockedText, massSlider, volumeSlider;
     private TextMeshProUGUI focusedText;
 
 
@@ -38,45 +38,60 @@ public class CameraZoom : MonoBehaviour
         setPanSpeed();
         isLockedText = GameObject.Find("isLockedText");
         focusedText = GameObject.Find("FocusedText").GetComponent<TextMeshProUGUI>();
+        massSlider = GameObject.Find("MassSlider");
+        volumeSlider = GameObject.Find("VolumeSlider");
         isLockedText.SetActive(false);
+        massSlider.SetActive(false);
+        volumeSlider.SetActive(false);
     }
 
     private void Hotkeys()
     {
         if (Input.GetKeyDown(KeyCode.F) && focused != -1)
         {
-            isLocked = !isLocked;
-            isLockedText.SetActive(isLocked);
+            isLockedText.SetActive(isLocked = !isLocked);
+            if (isLocked) Camera.main.transform.SetParent(GameObject.Find(planets[focused]).transform);
+            else Camera.main.transform.SetParent(GameObject.Find("SSPlane").transform);
         }
+
+        if (Input.GetKeyDown(KeyCode.R)) reset_all();
 
         for (int i = 0; i < (numKeys.Length / 2); i++)
         {
             if (Input.GetKeyDown(numKeys[i]) || Input.GetKeyDown(numKeys[i+9]))
             {
                 focused = (focused != i) ? i : -1;
+                // Initial
+                if (focused != -1)
+                {
+                    // Show planet specific things when focused
+                    focusedText.SetText("Focused on : " + planets[focused]);
+                    massSlider.SetActive(true);
+                    volumeSlider.SetActive(true);
+                }
+                else
+                {
+                    // Hide planet specific things when unfocused
+                    Camera.main.transform.SetParent(GameObject.Find("SSPlane").transform);
+                    isLocked = false;
+                    isLockedText.SetActive(false);
+                    focusedText.SetText("");
+                    massSlider.SetActive(false);
+                    volumeSlider.SetActive(false);
+                }
+
+                // Update Focus
+                GameObject.Find("MasterModifier").GetComponent<TimeScaleModifier>().setFocused(focused);
                 break;
             }
 
         }
 
-        if (focused == -1)
-        {
-            isLocked = false;
-            isLockedText.SetActive(false);
-            focusedText.SetText("");
-            Camera.main.transform.SetParent(GameObject.Find(planets[0]).transform);
-        } 
-        else
-        {
-            if (isLocked) Camera.main.transform.SetParent(GameObject.Find(planets[focused]).transform);
-            else Camera.main.transform.SetParent(GameObject.Find(planets[0]).transform);
-
-            Vector3 planetPos = GameObject.Find(planets[focused]).transform.position;
-            Camera.main.transform.LookAt(planetPos);
-            rotation.y = Camera.main.transform.eulerAngles.x;
-            rotation.x = Camera.main.transform.eulerAngles.y;
-            focusedText.SetText("Focused on : " + planets[focused]);
-        }
+        if (focused == -1) return;
+        rotation.y = Camera.main.transform.eulerAngles.x;
+        rotation.x = Camera.main.transform.eulerAngles.y;
+        Vector3 planetPos = GameObject.Find(planets[focused]).transform.position;
+        Camera.main.transform.LookAt(planetPos);
     }
 
     private void Update()
@@ -158,5 +173,22 @@ public class CameraZoom : MonoBehaviour
         panSpeed = (Camera.main.fieldOfView / zoomMax) * maxPanSpeed;
 
         //panSpeed = maxPanSpeed;
+    }
+
+    private void reset_all()
+    {
+        focused = -1;
+        isLocked = false;
+        Camera.main.transform.SetParent(GameObject.Find("SSPlane").transform);
+        isLockedText.SetActive(false);
+        focusedText.SetText("");
+        massSlider.SetActive(false);
+        volumeSlider.SetActive(false);
+        rotation = new Vector2(90, 90);
+        isLooking = true;
+        transform.position = new Vector3(0, 500, 0);
+        Camera.main.fieldOfView = 60;
+        setPanSpeed();
+        GameObject.Find("MasterModifier").GetComponent<TimeScaleModifier>().reset_all();
     }
 }
